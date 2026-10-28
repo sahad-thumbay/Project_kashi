@@ -1,20 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}Project KASHI{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="{{ url_for('index') }}"><span class="logo">K</span><span>PROJECT KASHI<small>Banking Management System</small></span></a>
-  <nav>
-    <a href="{{ url_for('index') }}">Dashboard</a>
-    <a href="{{ url_for('customers') }}">Customers</a>
-    <a href="{{ url_for('accounts') }}">Accounts</a>
-    <a href="{{ url_for('transactions') }}">Transactions</a>
-    <a href="{{ url_for('loans') }}">Loans</a>
-    <a href="{{ url_for('loan_payments') }}">Loan Payments</a>
+  <div class="brand">
+    <a href="{{ url_for('index') }}">Project KASHI</a>
+    <span>Banking Management System</span>
+  </div>
+  <nav aria-label="Main navigation">
+    <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Dashboard</a>
+    <a href="{{ url_for('customers') }}" {% if request.endpoint in ['customers', 'new_customer'] %}aria-current="page"{% endif %}>Customers</a>
+    <a href="{{ url_for('accounts') }}" {% if request.endpoint in ['accounts', 'new_account'] %}aria-current="page"{% endif %}>Accounts</a>
+    <a href="{{ url_for('transactions') }}" {% if request.endpoint == 'transactions' %}aria-current="page"{% endif %}>Transactions</a>
+    <a href="{{ url_for('loans') }}" {% if request.endpoint == 'loans' %}aria-current="page"{% endif %}>Loans</a>
+    <a href="{{ url_for('loan_payments') }}" {% if request.endpoint == 'loan_payments' %}aria-current="page"{% endif %}>Loan payments</a>
   </nav>
 </header>
 <main class="container">
@@ -23,6 +27,6 @@
 {% endwith %}
 {% block content %}{% endblock %}
 </main>
-<footer>Project KASHI · Academic DBMS prototype · Not a real banking service</footer>
+<footer>Project KASHI · Student banking database project · Demo only</footer>
 </body>
 </html>

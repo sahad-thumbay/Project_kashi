@@ -8,7 +8,7 @@
 <label>Annual interest rate (%)<input name="interest_rate" type="number" min="0" step="0.01" value="8.5" required></label>
 <label>Tenure (months)<input name="tenure" type="number" min="1" required></label>
 </div><div class="form-actions"><button class="btn" type="submit" {% if not customers or not branches %}disabled{% endif %}>Save application</button></div></form>
-<div class="section-head"><div><p class="eyebrow">LOAN REGISTER</p><h2>Applications</h2></div><a href="{{ url_for('loan_payments') }}">Record a payment →</a></div>
+<div class="section-head"><div><p class="eyebrow">LOAN REGISTER</p><h2>Applications</h2></div><a href="{{ url_for('loan_payments') }}">Record a payment</a></div>
 <div class="table-wrap"><table><thead><tr><th>ID</th><th>Customer</th><th>Branch</th><th>Loan type</th><th>Amount</th><th>Rate</th><th>Tenure</th><th>Status</th></tr></thead><tbody>
 {% for l in loans %}<tr><td>#{{ l.LoanID }}</td><td>{{ l.CustomerName }}</td><td>{{ l.BranchName }}</td><td>{{ l.LoanType }}</td><td>₹{{ '%.2f'|format(l.LoanAmount) }}</td><td>{{ l.InterestRate }}%</td><td>{{ l.TenureMonths }} mo</td><td><span class="pill">{{ l.LoanStatus }}</span></td></tr>{% else %}<tr><td colspan="8">No loan records.</td></tr>{% endfor %}
 </tbody></table></div>{% endblock %}
